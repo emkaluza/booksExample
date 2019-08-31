@@ -9,6 +9,7 @@ import java.util.Set;
 @Configuration
 public class AppConfig {
 
+    //Not really ideal solution, but will act like simplest data store available
     private final Set<Book> booksCache = new HashSet<>();
 
     @Bean

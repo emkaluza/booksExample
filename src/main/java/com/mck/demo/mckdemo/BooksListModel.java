@@ -1,31 +1,29 @@
 package com.mck.demo.mckdemo;
 
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Set;
 
 @Named
 public class BooksListModel {
     private static final String NO_RECORDS_MESSAGE = "No records";
 
-    @Getter private final Set<Book> books = new HashSet<Book>();
-
-    public void addBook(final String author, final String title, final String ISBN) {
-        books.add(new Book(author, title, ISBN));
-    }
+    @Autowired
+    @Getter
+    private Set<Book> booksCache;
 
     public boolean booksEmpty() {
-        return books.isEmpty();
+        return booksCache.isEmpty();
     }
 
     public boolean renderBooksList() {
-        return !books.isEmpty();
+        return !booksCache.isEmpty();
     }
 
     public String getNoRecordsMessage() {
@@ -43,7 +41,7 @@ public class BooksListModel {
 
     @PostConstruct
     public void init() {
-        addBook("test1","tesdt2","test3");
+        //for hardcoded tests
     }
 
 }

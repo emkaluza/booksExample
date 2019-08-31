@@ -16,7 +16,7 @@
             <h:outputLabel value="#{booksListModel.getNoRecordsMessage()}"/>
         </h:panelGrid>
         <h:panelGrid columns="1" rendered="#{booksListModel.renderBooksList()}">
-            <p:dataList value="#{booksListModel.books}" var="book" type="ordered">
+            <p:dataList value="#{booksListModel.booksCache}" var="book" type="ordered">
                 #{book.author}, #{book.title}, #{book.ISBN}
             </p:dataList>
         </h:panelGrid>
