@@ -2,6 +2,8 @@ package com.mck.demo.mckdemo;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.faces.application.FacesMessage;
@@ -13,6 +15,7 @@ import java.util.Set;
 
 @Named
 public class AddBookModel {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AddBookModel.class);
 
     @Getter @Setter private String author;
     @Getter @Setter private String title;
@@ -22,13 +25,14 @@ public class AddBookModel {
     private Set<Book> booksCache;
 
     public void addBook() {
+        LOGGER.debug(String.format("addBook() - %s | %s | %s", author,title,isbn));
         if (author.matches("(^[A].*)|(.*\\s+[A]{1}.*)")) { //find first letter A -OR- after whitespace letter A
             ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
             try {
                 booksCache.add(new Book(author, title, isbn));
                 externalContext.redirect("/index.xhtml");
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.debug("Redirect problem - /index.xhtml", e);
             }
             cleanData();
             return;
@@ -38,6 +42,7 @@ public class AddBookModel {
     }
 
     private void cleanData() {
+        LOGGER.debug("cleanData()");
         author = "";
         title = "";
         isbn = "";

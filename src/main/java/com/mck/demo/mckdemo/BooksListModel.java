@@ -1,6 +1,8 @@
 package com.mck.demo.mckdemo;
 
 import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +14,7 @@ import java.util.Set;
 
 @Named
 public class BooksListModel {
+    private static final Logger LOGGER = LoggerFactory.getLogger(BooksListModel.class);
     private static final String NO_RECORDS_MESSAGE = "No records";
 
     @Autowired
@@ -31,11 +34,12 @@ public class BooksListModel {
     }
 
     public void addBook() {
+        LOGGER.debug("addBook()");
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         try {
             externalContext.redirect("/addBook.xhtml");
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Problem redirecting /addBook.xhtml", e);
         }
     }
 
