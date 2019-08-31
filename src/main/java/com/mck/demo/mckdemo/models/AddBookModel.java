@@ -1,4 +1,4 @@
-package com.mck.demo.mckdemo;
+package com.mck.demo.mckdemo.models;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -37,7 +37,7 @@ public class AddBookModel {
             cleanData();
             return;
         }
-
+        LOGGER.debug("Validation failed");
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Validation error, author name or surname must start from letter 'A'"));
     }
 

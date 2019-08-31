@@ -1,4 +1,4 @@
-package com.mck.demo.mckdemo;
+package com.mck.demo.mckdemo.models;
 
 import lombok.Getter;
 import org.slf4j.Logger;
