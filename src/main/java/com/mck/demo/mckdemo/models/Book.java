@@ -3,6 +3,7 @@ package com.mck.demo.mckdemo.models;
 import lombok.*;
 
 @ToString
+@EqualsAndHashCode
 @RequiredArgsConstructor
 public class Book {
     @NonNull @Getter private final String author;

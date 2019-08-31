@@ -1,20 +1,17 @@
 package com.mck.demo.mckdemo;
 
-import com.mck.demo.mckdemo.models.Book;
+import com.mck.demo.mckdemo.bookscache.BooksCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Configuration
 public class AppConfig {
 
     //Not really ideal solution, but will act like simplest data store available
-    private final Set<Book> booksCache = new HashSet<>();
+    private final BooksCache booksCache = new BooksCache();
 
     @Bean
-    public Set<Book> booksCache() {
+    public BooksCache booksCache() {
         return booksCache;
     }
 }

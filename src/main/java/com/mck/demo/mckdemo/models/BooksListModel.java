@@ -1,5 +1,6 @@
 package com.mck.demo.mckdemo.models;
 
+import com.mck.demo.mckdemo.bookscache.BooksCache;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +11,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.IOException;
-import java.util.Set;
 
 @Named
 public class BooksListModel {
@@ -19,14 +19,14 @@ public class BooksListModel {
 
     @Autowired
     @Getter
-    private Set<Book> booksCache;
+    private BooksCache booksCache;
 
     public boolean booksEmpty() {
-        return booksCache.isEmpty();
+        return booksCache.getBooksCache().isEmpty();
     }
 
     public boolean renderBooksList() {
-        return !booksCache.isEmpty();
+        return !booksCache.getBooksCache().isEmpty();
     }
 
     public String getNoRecordsMessage() {

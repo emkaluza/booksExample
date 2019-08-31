@@ -1,5 +1,6 @@
 package com.mck.demo.mckdemo.models;
 
+import com.mck.demo.mckdemo.bookscache.BooksCache;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
@@ -11,7 +12,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.IOException;
-import java.util.Set;
 
 @Named
 public class AddBookModel {
@@ -22,14 +22,14 @@ public class AddBookModel {
     @Getter @Setter private String isbn;
 
     @Autowired
-    private Set<Book> booksCache;
+    private BooksCache booksCache;
 
     public void addBook() {
         LOGGER.debug(String.format("addBook() - %s | %s | %s", author,title,isbn));
         if (author.matches("(^[A].*)|(.*\\s+[A]{1}.*)")) { //find first letter A -OR- after whitespace letter A
             ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
             try {
-                booksCache.add(new Book(author, title, isbn));
+                booksCache.getBooksCache().add(new Book(author, title, isbn));
                 externalContext.redirect("/index.xhtml");
             } catch (IOException e) {
                 LOGGER.debug("Redirect problem - /index.xhtml", e);
