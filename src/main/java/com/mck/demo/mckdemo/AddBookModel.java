@@ -30,9 +30,16 @@ public class AddBookModel {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            cleanData();
             return;
         }
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Validation error, author name or surname must start from letter 'A'"));
+    }
+
+    private void cleanData() {
+        author = "";
+        title = "";
+        isbn = "";
     }
 }
