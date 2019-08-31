@@ -1,0 +1,18 @@
+package com.mck.demo.mckdemo;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.HashSet;
+import java.util.Set;
+
+@Configuration
+public class AppConfig {
+
+    private final Set<Book> booksCache = new HashSet<>();
+
+    @Bean
+    public Set<Book> booksCache() {
+        return booksCache;
+    }
+}

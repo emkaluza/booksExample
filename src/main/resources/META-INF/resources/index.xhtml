@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Books example</title>
+</h:head>
+
+<h:body>
+    <p:panel header="Books list">
+        <p:commandButton value="Add book" id="addBook" action="#{booksListModel.addBook()}" style="margin-right:20px;" styleClass="ui-priority-primary" oncomplete="if (!args.validationFailed) PF('formErrorDialog').show();"/>
+        <h:panelGrid columns="1" rendered="#{booksListModel.booksEmpty()}">
+            <h:outputLabel value="#{booksListModel.getNoRecordsMessage()}"/>
+        </h:panelGrid>
+        <h:panelGrid columns="1" rendered="#{booksListModel.renderBooksList()}">
+            <p:dataList value="#{booksListModel.books}" var="book" type="ordered">
+                #{book.author}, #{book.title}, #{book.ISBN}
+            </p:dataList>
+        </h:panelGrid>
+    </p:panel>
+
+    <h:form id="formErrorDialog">
+        <p:dialog header="Error" widgetVar="errorDlg" modal="true" height="100">
+            <h:outputText value="Something went wrong, sorry :(" />
+        </p:dialog>
+    </h:form>
+</h:body>
+
+<!--<h:body>-->
+<!--    <h:form id="helloworld-form">-->
+
+<!--        <p:panel header="PrimeFaces Hello World Example">-->
+<!--            <h:panelGrid columns="2" cellpadding="4">-->
+<!--                <h:outputText value="First Name: "/>-->
+<!--                <p:inputText id="first-name" value="test1"/>-->
+
+<!--                <h:outputText value="Last Name: "/>-->
+<!--                <p:inputText id="last-name" value="test2"/>-->
+
+<!--                <p:commandButton id="submit" value="Submit"-->
+<!--                                 update="greeting-panel"-->
+<!--                                 oncomplete="PF('greetingDialog').show()"/>-->
+<!--            </h:panelGrid>-->
+<!--        </p:panel>-->
+
+<!--        <p:dialog header="Greeting" widgetVar="greetingDialog"-->
+<!--                  modal="true" resizable="false">-->
+<!--            <h:panelGrid id="greeting-panel" columns="1" cellpadding="4">-->
+<!--                <h:outputText value="#{helloWorld.showGreeting()}"/>-->
+<!--            </h:panelGrid>-->
+<!--        </p:dialog>-->
+
+<!--    </h:form>-->
+<!--</h:body>-->
+</html>

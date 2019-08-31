@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Add book</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel id="panel" header="New book">
+            <p:messages id="msgs" />
+
+            <h:panelGrid columns="3" cellpadding="5">
+                <h:outputLabel for="author" value="Author:" style="font-weight:bold" />
+                <p:inputText id="author" value="#{addBookModel.author}" required="true" label="Firstname"/>
+                <p:message for="author" display="icon" />
+
+                <h:outputLabel for="title" value="Title:" style="font-weight:bold" />
+                <p:inputText id="title" value="#{addBookModel.title}" required="true" label="Title"/>
+                <p:message for="title" display="icon" />
+
+                <h:outputLabel for="isbn" value="ISBN:" style="font-weight:bold" />
+                <p:inputText id="isbn" value="#{addBookModel.isbn}" required="true" label="ISBN"/>
+                <p:message for="isbn" display="icon" />
+            </h:panelGrid>
+            <p:commandButton value="Add book" update="panel" icon="pi pi-check" action="#{addBookModel.addBook()}"/>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>
